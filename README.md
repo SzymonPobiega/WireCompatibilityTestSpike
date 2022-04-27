@@ -1,1 +1,1 @@
-# WireCompatibilityTestSpike
+# Wire compatibility test spike
