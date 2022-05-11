@@ -8,7 +8,7 @@
 
     public class TestScenarioRunner
     {
-        public static async Task<TestResult> Run(string scenarioName, AgentInfo[] agents)
+        public static async Task<TestExecutionResult> Run(string scenarioName, AgentInfo[] agents)
         {
             var uniqueName = scenarioName + Guid.NewGuid().ToString("N");
 
@@ -26,7 +26,7 @@
 
                 var finished = await context.WaitUntilTrue("Success", TimeSpan.FromSeconds(1000));
                 var variables = context.ToDictionary();
-                return new TestResult
+                return new TestExecutionResult
                 {
                     Succeeded = finished,
                     VariableValues = variables
