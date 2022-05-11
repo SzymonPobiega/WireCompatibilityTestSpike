@@ -15,12 +15,12 @@
                 new AgentInfo()
                 {
                     Behavior = "TestBehaviors.V7.Sender, TestBehaviors.V7",
-                    ProjectPath = "C:\\Particular\\TestRunnerSpike\\TestAgent.V7"
+                    Project = "TestAgent.V7"
                 },
                 new AgentInfo()
                 {
                     Behavior = "TestBehaviors.V8.Receiver, TestBehaviors.V8",
-                    ProjectPath = "C:\\Particular\\TestRunnerSpike\\TestAgent.V8"
+                    Project = "TestAgent.V8"
                 },
             });
             Assert.True(result.Succeeded);

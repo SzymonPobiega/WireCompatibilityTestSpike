@@ -14,7 +14,7 @@
 
             using var context = new MemoryMappedFileTestContext(uniqueName, true);
 
-            var processes = agents.Select(x => new AgentProcess(x.ProjectPath, x.Behavior, uniqueName, x.BehaviorParameters ?? new Dictionary<string, string>())).ToArray();
+            var processes = agents.Select(x => new AgentProcess(x.Project, x.Behavior, uniqueName, x.BehaviorParameters ?? new Dictionary<string, string>())).ToArray();
 
 
             try

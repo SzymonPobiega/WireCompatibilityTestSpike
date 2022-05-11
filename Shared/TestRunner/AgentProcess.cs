@@ -1,4 +1,7 @@
-﻿namespace TestRunner
+﻿using System;
+using System.IO;
+
+namespace TestRunner
 {
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -12,8 +15,10 @@
         Task<string> errorTask;
         bool started;
 
-        public AgentProcess(string projectFilePath, string behaviorType, string mappedFileName, Dictionary<string, string> args)
+        public AgentProcess(string projectName, string behaviorType, string mappedFileName, Dictionary<string, string> args)
         {
+            var projectFilePath = GetProjectFilePath(projectName);
+            
             process = new Process();
             process.StartInfo.FileName = @"dotnet";
             process.StartInfo.Arguments = $"run --project \"{projectFilePath}\" \"{behaviorType}\" {mappedFileName} {string.Join(" ", args.Select(kvp => FormatArgument(kvp)))}";
@@ -23,6 +28,33 @@
             process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.StartInfo.CreateNoWindow = true;
+        }
+        
+        string GetProjectFilePath(string projectName)
+        {
+            var directory = AppDomain.CurrentDomain.BaseDirectory;
+
+            while (true)
+            {
+                if (Directory.EnumerateFiles(directory).Any(file => file.EndsWith(".sln")))
+                {
+                    var projectFilePath = Directory.EnumerateFiles(directory, $"{projectName}.csproj", SearchOption.AllDirectories).SingleOrDefault();
+                    if (!File.Exists(projectFilePath))
+                    {
+                        throw new Exception($"Unable to find a project file that matches the supplied project name {projectName}");
+                    }
+
+                    return projectFilePath;
+                }
+
+                var parent = Directory.GetParent(directory);
+                if (parent == null)
+                {
+                    throw new Exception($"Unable to determine the solution directory path due to the absence of a solution file.");
+                }
+
+                directory = parent.FullName;
+            }
         }
 
         static string FormatArgument(KeyValuePair<string, string> kvp)
