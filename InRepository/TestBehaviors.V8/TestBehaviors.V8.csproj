@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="6.0.0" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="7.0.0-beta.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\TestAgent.Framework.V7.Framework\TestAgent.Framework.V7.csproj" />
+    <ProjectReference Include="..\..\Shared\TestAgent.Framework.V8.Framework\TestAgent.Framework.V8.csproj" />
     <ProjectReference Include="..\..\Shared\TestComms\TestComms.csproj" />
     <ProjectReference Include="..\TestBehaviors.Messages\TestBehaviors.Messages.csproj" />
   </ItemGroup>

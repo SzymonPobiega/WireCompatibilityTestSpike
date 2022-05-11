@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>TestAgent</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\TestAgent.Framework.V7.Framework\TestAgent.Framework.V7.csproj" />
+    <ProjectReference Include="..\..\TestBehaviors.V7\TestBehaviors.V7.csproj" />
+
+    <!--<PackageReference Include="NServiceBus.Transport.SqlServer.TestBehaviors.V6" Version="7.*.*" />-->
+    <PackageReference Include="NServiceBus.RabbitMQ " Version="6.0.*" /> <!--Specific minor is testeed for the latest patch-->
+
+    <PackageReference Include="NServiceBus" Version="7.7.*" /> <!--Reference the latest core minor because Nuget would bring the lowest-->
+	  
+  </ItemGroup>
+
+</Project>
