@@ -1,7 +1,6 @@
-﻿namespace TestBehaviors.V7
+﻿namespace TestBehaviors.V8
 {
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Threading.Tasks;
     using NServiceBus;
     using TestComms;
