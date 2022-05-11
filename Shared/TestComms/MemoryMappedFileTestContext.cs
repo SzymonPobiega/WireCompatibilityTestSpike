@@ -15,19 +15,20 @@
         readonly Mutex mutex;
         readonly MemoryMappedViewAccessor accessor;
         readonly Dictionary<string, int> cache = new Dictionary<string, int>();
+        readonly string name;
 
         public MemoryMappedFileTestContext(string name, bool create = false)
         {
+            this.name = name;
+            file = MemoryMappedFile.CreateFromFile(name, FileMode.OpenOrCreate, null, 1024);
+
             owner = create;
             if (owner)
             {
-                file = MemoryMappedFile.CreateNew(name, 10000, MemoryMappedFileAccess.ReadWrite);
                 mutex = new Mutex(false, name + "mutex", out _);
-
             }
             else
             {
-                file = MemoryMappedFile.OpenExisting(name, MemoryMappedFileRights.ReadWrite);
                 mutex = Mutex.OpenExisting(name + "mutex");
             }
 
@@ -238,6 +239,7 @@
                 mutex.Dispose();
             }
             file.Dispose();
+            File.Delete(name);
         }
     }
 }
