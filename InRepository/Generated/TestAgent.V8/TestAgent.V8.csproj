@@ -6,13 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\TestAgent.Framework.V7.Framework\TestAgent.Framework.V7.csproj" />
-    <ProjectReference Include="..\..\TestBehaviors.V7\TestBehaviors.V7.csproj" />
+    <ProjectReference Include="..\..\..\Shared\TestAgent.Framework.V8.Framework\TestAgent.Framework.V8.csproj" />
+    <ProjectReference Include="..\..\TestBehaviors.V8\TestBehaviors.V8.csproj" />
 
-    <!--<PackageReference Include="NServiceBus.Transport.SqlServer.TestBehaviors.V6" Version="7.*.*" />-->
-    <PackageReference Include="NServiceBus.RabbitMQ " Version="6.0.*" /> <!--Specific minor is testeed for the latest patch-->
-
-    <PackageReference Include="NServiceBus" Version="7.7.*" /> <!--Reference the latest core minor because Nuget would bring the lowest-->
+    <!--<PackageReference Include="TheTransportVersionToBeTested" Version="*.*.*" />-->
+    <PackageReference Include="NServiceBus" Version="8.0.0-beta.2" /> <!--Reference the latest core minor because Nuget would bring the lowest-->
 	  
   </ItemGroup>
 
