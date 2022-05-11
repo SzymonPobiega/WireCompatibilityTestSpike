@@ -5,7 +5,7 @@
     using TestRunner;
 
     [TestFixture]
-    public class Test
+    public class ThisIsATest
     {
         [Test]
         public async Task RunHardcodedScenario()

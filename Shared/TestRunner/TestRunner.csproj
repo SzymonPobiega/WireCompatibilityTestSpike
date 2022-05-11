@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestLogicApi\TestComms.csproj" />
+    <ProjectReference Include="..\TestComms\TestComms.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\TestAgent.Framework.V7.Framework\TestAgent.Framework.V7.csproj" />
+    <ProjectReference Include="..\..\Shared\TestComms\TestComms.csproj" />
+  </ItemGroup>
+
+</Project>
