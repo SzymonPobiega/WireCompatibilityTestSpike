@@ -25,6 +25,12 @@
             });
             Assert.True(result.Succeeded);
 
+            /*
+             * The spike implementation of the shared ITestContextAccessor is
+             * based on a Dictionary<string, int>. It allows only for 0 or 1 named
+             * flags. When setting the flag using the boolean overload, the value
+             * will be converted to int. his is why it must be consumed as int. 
+             */
             var requestReceived = (int)result.VariableValues["RequestReceived"];
             var responseReceived = (int)result.VariableValues["ResponseReceived"];
 
