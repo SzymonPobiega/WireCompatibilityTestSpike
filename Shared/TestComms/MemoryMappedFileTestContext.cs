@@ -20,15 +20,16 @@
         public MemoryMappedFileTestContext(string name, bool create = false)
         {
             this.name = name;
-            file = MemoryMappedFile.CreateFromFile(name, FileMode.OpenOrCreate, null, 1024);
 
             owner = create;
             if (owner)
             {
-                mutex = new Mutex(false, name + "mutex", out _);
+                file = MemoryMappedFile.CreateFromFile(name, FileMode.OpenOrCreate, null, 1024);
+                mutex = new Mutex(false, Path.GetFileName(name) + "mutex", out _);
             }
             else
             {
+                file = MemoryMappedFile.OpenExisting(name);
                 mutex = Mutex.OpenExisting(name + "mutex");
             }
 
@@ -237,9 +238,13 @@
             if (owner)
             {
                 mutex.Dispose();
+                file.Dispose();
+                //File.Delete(name);
             }
-            file.Dispose();
-            File.Delete(name);
+            else
+            {
+                file.Dispose();
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace TestRunner
             
             process = new Process();
             process.StartInfo.FileName = @"dotnet";
-            process.StartInfo.Arguments = $"run --project \"{projectFilePath}\" \"{behaviorType}\" {mappedFileName} {string.Join(" ", args.Select(kvp => FormatArgument(kvp)))}";
+            process.StartInfo.Arguments = $"run --project \"{projectFilePath}\" \"{behaviorType}\" \"{mappedFileName}\" {string.Join(" ", args.Select(kvp => FormatArgument(kvp)))}";
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardError = true;
