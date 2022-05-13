@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using TestComms;
@@ -12,11 +11,10 @@
         public static async Task<TestExecutionResult> Run(string scenarioName, AgentInfo[] agents)
         {
             var uniqueName = scenarioName + Guid.NewGuid().ToString("N");
-            var tempFile = Path.Combine(Path.GetTempPath(), uniqueName);
 
-            using var context = new MemoryMappedFileTestContext(tempFile, true);
+            using var context = new MemoryMappedFileTestContext(uniqueName, true);
 
-            var processes = agents.Select(x => new AgentProcess(x.Project, x.Behavior, tempFile, x.BehaviorParameters ?? new Dictionary<string, string>())).ToArray();
+            var processes = agents.Select(x => new AgentProcess(x.Project, x.Behavior, uniqueName, x.BehaviorParameters ?? new Dictionary<string, string>())).ToArray();
 
 
             try

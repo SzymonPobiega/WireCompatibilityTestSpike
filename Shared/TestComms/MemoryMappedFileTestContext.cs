@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.IO.MemoryMappedFiles;
     using System.Text;
@@ -24,12 +25,12 @@
             owner = create;
             if (owner)
             {
-                file = MemoryMappedFile.CreateFromFile(name, FileMode.OpenOrCreate, null, 1024);
+                file = MemoryMappedFile.CreateFromFile(name, FileMode.CreateNew, name, 1024, MemoryMappedFileAccess.ReadWrite);
                 mutex = new Mutex(false, Path.GetFileName(name) + "mutex", out _);
             }
             else
             {
-                file = MemoryMappedFile.OpenExisting(name);
+                file = MemoryMappedFile.OpenExisting(name, MemoryMappedFileRights.ReadWrite);
                 mutex = Mutex.OpenExisting(name + "mutex");
             }
 
