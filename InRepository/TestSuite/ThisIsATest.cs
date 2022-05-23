@@ -8,7 +8,7 @@
     public class ThisIsATest
     {
         [Test]
-        public async Task RunHardcodedScenario()
+        public async Task PingPong()
         {
             var result = await TestScenarioRunner.Run("Ping-Pong", new[]
             {
